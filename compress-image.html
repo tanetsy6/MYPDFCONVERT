@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Compressor Tool - Multi Tool Hub</title>
+  
+  <!-- Link to Compressor.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/compressorjs/1.1.0/compressor.min.js"></script>
+  
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1E1E2F;
+      color: #EAEAEA;
+      padding: 0 10px;
+    }
+
+    header {
+      text-align: center;
+      background-color: #2B2D42;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      color: #FFD700;
+      font-size: 2.5rem;
+    }
+
+    .tool-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .tool-card {
+      background-color: #3A3D5B;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      width: 100%;
+      max-width: 350px;
+    }
+
+    input[type="file"] {
+      background-color: #FFD700;
+      color: #1E1E2F;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    select, button {
+      background-color: #FFD700;
+      color: #1E1E2F;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    select {
+      margin: 10px 0;
+    }
+
+    button:hover, select:hover {
+      background-color: #E6C200;
+    }
+
+    #processing {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #FFD700;
+    }
+
+    #previewContainer {
+      margin-top: 20px;
+    }
+
+    #compressedImage {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    a {
+      display: block;
+      margin-top: 15px;
+      background-color: #FFD700;
+      padding: 10px 20px;
+      color: #1E1E2F;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      background-color: #E6C200;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      .tool-container {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Image Compressor Tool</h1>
+  </header>
+
+  <main>
+    <section class="tool-container">
+      <div class="tool-card">
+        <h2>Compress Your Image</h2>
+        <p>Upload an image, select quality, and compress it.</p>
+
+        <!-- Image Upload Section -->
+        <input type="file" id="imageInput" accept="image/*" />
+        
+        <div class="quality-selector">
+          <label for="quality">Select Compression Quality:</label>
+          <select id="quality" name="quality">
+            <option value="0.9">High (90%)</option>
+            <option value="0.7">Medium (70%)</option>
+            <option value="0.5">Low (50%)</option>
+          </select>
+        </div>
+
+        <!-- Compress Button -->
+        <button id="compressBtn" onclick="compressImage()">Compress Image</button>
+        
+        <!-- Processing Indicator -->
+        <div id="processing" class="hidden">Compressing image...</div>
+
+        <!-- Image Preview -->
+        <div id="previewContainer" class="hidden">
+          <h3>Preview:</h3>
+          <img id="compressedImage" src="" alt="Compressed Image" />
+          <a id="downloadBtn" href="" download="compressed-image.jpg" class="hidden">Download Compressed Image</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function compressImage() {
+      // Hide preview and download initially
+      document.getElementById("previewContainer").classList.add("hidden");
+      document.getElementById("processing").classList.remove("hidden");
+
+      const fileInput = document.getElementById("imageInput");
+      const quality = parseFloat(document.getElementById("quality").value);
+      const file = fileInput.files[0];
+
+      if (!file) {
+        alert("Please select an image file to upload.");
+        return;
+      }
+
+      // Supported image formats
+      const supportedFormats = ["image/png", "image/jpg", "image/jpeg", "image/bmp", "image/gif", "image/tiff", "image/webp"];
+      if (!supportedFormats.includes(file.type)) {
+        alert("Unsupported file type. Please upload a valid image file.");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        const image = new Image();
+        image.src = event.target.result;
+
+        image.onload = function () {
+          // Compress image using Compressor.js
+          new Compressor(image, {
+            quality: quality,
+            success(result) {
+              // Show the compressed image preview and download link
+              const compressedImage = document.getElementById("compressedImage");
+              const downloadBtn = document.getElementById("downloadBtn");
+              
+              compressedImage.src = URL.createObjectURL(result);
+              downloadBtn.href = compressedImage.src;
+              downloadBtn.classList.remove("hidden");
+              document.getElementById("previewContainer").classList.remove("hidden");
+
+              // Hide processing indicator
+              document.getElementById("processing").classList.add("hidden");
+            },
+            error(err) {
+              alert("Error during compression: " + err.message);
+              document.getElementById("processing").classList.add("hidden");
+            }
+          });
+        };
+      };
+      reader.readAsDataURL(file);
+    }
+  </script>
+
+</body>
+</html>
