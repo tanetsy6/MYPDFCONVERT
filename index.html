@@ -3,352 +3,1243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My PDF Convert - Online PDF Tools</title>
+    <meta name="description" content="Free online tools for PDF and image processing. Compress, merge, split, convert PDFs and images with our easy-to-use web tools.">
+    <meta name="keywords" content="PDF compressor, image compressor, merge PDF, split PDF, PDF to JPG, JPG to PDF, online tools">
+    <meta name="author" content="PDF & Image Tools">
+    <title>PDF & Image Tools - Compress, Convert, Merge Files Online</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="PDF & Image Tools">
+    <meta property="og:description" content="Free online tools for PDF and image processing">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/preview.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourwebsite.com">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
-        /* Base Styles */
         :root {
-            --dark-navy: #1E1E2F;
-            --light-gray: #EAEAEA;
-            --deep-blue: #2B2D42;
-            --gold: #FFD700;
-            --deep-gold: #E6C200;
-            --tool-card-bg: #3A3D5B;
-            --box-shadow: 0 4px 8px rgba(255, 215, 0, 0.2);
+            --primary-color: #4285f4;
+            --secondary-color: #34a853;
+            --accent-color: #ea4335;
+            --light-color: #f8f9fa;
+            --dark-color: #202124;
+            --gray-color: #5f6368;
+            --border-radius: 8px;
+            --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
-            background-color: var(--dark-navy);
-            color: var(--light-gray);
+            font-family: 'Roboto', sans-serif;
             line-height: 1.6;
-            min-height: 100vh;
+            color: var(--dark-color);
+            background-color: #f5f5f5;
         }
-
-        /* Header Styles */
-        header {
-            background-color: var(--deep-blue);
-            padding: 2rem 1rem;
-            text-align: center;
-            box-shadow: var(--box-shadow);
-            position: relative;
-            z-index: 10;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--gold);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Main Content */
-        main {
-            padding: 2rem 1rem;
+        
+        .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 15px;
         }
-
-        /* Tools Grid */
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        /* Tool Card */
-        .tool-card {
-            background-color: var(--tool-card-bg);
-            border-radius: 10px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
+        
+        header {
+            background-color: white;
             box-shadow: var(--box-shadow);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tool-card::before {
-            content: '';
-            position: absolute;
+            padding: 15px 0;
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background-color: var(--gold);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
+            z-index: 100;
         }
-
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--gray-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray-color);
+            cursor: pointer;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .main-content {
+            padding: 40px 0;
+        }
+        
+        .tool-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .tool-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--light-color);
+            padding-bottom: 10px;
+        }
+        
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .tool-card {
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
         .tool-card:hover {
             transform: translateY(-5px);
-            background-color: var(--gold);
-            color: var(--dark-navy);
-            box-shadow: 0 8px 16px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-
-        .tool-card:hover::before {
-            transform: scaleX(1);
+        
+        .tool-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
         }
-
-        .tool-card h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--gold);
-            position: relative;
-            z-index: 1;
+        
+        .tool-card h4 {
+            margin-bottom: 10px;
+            color: var(--dark-color);
         }
-
-        .tool-card:hover h2 {
-            color: var(--dark-navy);
-        }
-
+        
         .tool-card p {
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
+            color: var(--gray-color);
+            font-size: 0.9rem;
         }
-
-        /* Button Styles */
+        
+        .tool-interface {
+            display: none;
+            margin-top: 30px;
+        }
+        
+        .active-tool {
+            display: block;
+        }
+        
+        .file-upload-area {
+            border: 2px dashed var(--gray-color);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+        
+        .file-upload-area:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .file-upload-area i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .file-upload-area p {
+            margin-bottom: 10px;
+        }
+        
+        .file-upload-area input[type="file"] {
+            display: none;
+        }
+        
+        .options-section {
+            margin-bottom: 20px;
+        }
+        
+        .options-section h4 {
+            margin-bottom: 15px;
+            color: var(--gray-color);
+        }
+        
+        .option-group {
+            margin-bottom: 15px;
+        }
+        
+        .option-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .option-group select, 
+        .option-group input[type="range"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+        }
+        
+        .range-value {
+            display: inline-block;
+            margin-left: 10px;
+            font-weight: 500;
+        }
+        
         .btn {
             display: inline-block;
-            background-color: var(--gold);
-            color: var(--dark-navy);
-            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
             border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            text-decoration: none;
+            border-radius: var(--border-radius);
             font-size: 1rem;
-            width: 100%;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
-            transform: translateX(-100%);
-            transition: transform 0.4s ease;
-        }
-
+        
         .btn:hover {
-            background-color: var(--deep-gold);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #3367d6;
         }
-
-        .btn:hover::after {
-            transform: translateX(100%);
+        
+        .btn-secondary {
+            background-color: var(--gray-color);
         }
-
-        .tool-card:hover .btn {
-            background-color: var(--dark-navy);
-            color: var(--gold);
+        
+        .btn-secondary:hover {
+            background-color: #4d5156;
         }
-
-        .tool-card:hover .btn:hover {
-            background-color: #111122;
+        
+        .result-section {
+            display: none;
+            margin-top: 30px;
         }
-
-        /* Footer */
-        footer {
-            background-color: var(--deep-blue);
-            padding: 1.5rem;
+        
+        .result-preview {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+        }
+        
+        .download-btn {
+            margin-top: 20px;
+        }
+        
+        .ad-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            margin: 30px 0;
             text-align: center;
-            margin-top: 3rem;
-            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-
-        footer p {
-            opacity: 0.8;
+        
+        .ad-container p {
+            color: var(--gray-color);
         }
-
-        /* Responsive Design */
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+        }
+        
+        .feature-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h4 {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .feature-card p {
+            color: var(--gray-color);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h4 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #bdc1c6;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #3c4043;
+            color: #9aa0a6;
+            font-size: 0.9rem;
+        }
+        
         @media (max-width: 768px) {
-            .tools-grid {
-                grid-template-columns: 1fr;
+            .header-content {
+                flex-direction: column;
+                text-align: center;
             }
-
-            header h1 {
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h2 {
                 font-size: 2rem;
             }
-        }
-
-        @media (max-width: 480px) {
-            .tool-card {
-                padding: 1.2rem;
-            }
             
-            header h1 {
-                font-size: 1.8rem;
-            }
-            
-            header p {
+            .hero p {
                 font-size: 1rem;
             }
             
-            .btn {
-                padding: 0.7rem 1.2rem;
+            .tool-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            nav.active {
+                display: block;
+                margin-top: 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .file-upload-area {
+                padding: 20px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header Section -->
+    <!-- Header -->
     <header>
-        <h1>My PDF Convert</h1>
-        <p>Premium PDF and image conversion tools for all your document needs</p>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <img src="logo.png" alt="PDF & Image Tools Logo">
+                <h1>PDF & Image Tools</h1>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#tools">Tools</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>All-in-One PDF and Image Tools</h2>
+            <p>Compress, convert, merge, and edit your PDFs and images with our free online tools. No installation required, completely web-based and secure.</p>
+        </div>
+    </section>
+    
     <!-- Main Content -->
-    <main>
-        <!-- Tools Grid -->
-        <div class="tools-grid">
-            <!-- Tool Card 1: Merge PDF -->
-            <div class="tool-card">
-                <h2>Merge PDF</h2>
-                <p>Combine multiple PDF files into a single document while preserving quality and formatting.</p>
-                <button class="btn" onclick="redirectToTool('Merge PDF')">Use Tool</button>
+    <main class="main-content">
+        <div class="container">
+            <!-- Top Ad Banner -->
+            <div class="ad-container">
+                <!-- Replace with your Google AdSense code -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
+                crossorigin="anonymous"></script>
+                <!-- Your Ad Unit -->
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                    data-ad-slot="YOUR_AD_SLOT_ID"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
-
-            <!-- Tool Card 2: Image Compressor -->
-            <div class="tool-card">
-                <h2>Image Compressor</h2>
-                <p>Reduce image file sizes significantly while maintaining visual quality for web and mobile.</p>
-                <button class="btn" onclick="redirectToTool('Image Compressor')">Use Tool</button>
-            </div>
-
-            <!-- Tool Card 3: Image Crop -->
-            <div class="tool-card">
-                <h2>Image Crop</h2>
-                <p>Precisely crop images to any size or aspect ratio with pixel-perfect accuracy.</p>
-                <button class="btn" onclick="redirectToTool('Image Crop')">Use Tool</button>
-            </div>
-
-            <!-- Tool Card 4: PDF to JPG -->
-            <div class="tool-card">
-                <h2>PDF to JPG</h2>
-                <p>Convert PDF pages to high-quality JPG images with customizable resolution settings.</p>
-                <button class="btn" onclick="redirectToTool('PDF to JPG')">Use Tool</button>
-            </div>
-
-            <!-- Tool Card 5: Edit PDF -->
-            <div class="tool-card">
-                <h2>Edit PDF</h2>
-                <p>Modify PDF documents by adding text, images, annotations, and rearranging pages.</p>
-                <button class="btn" onclick="redirectToTool('Edit PDF')">Use Tool</button>
-            </div>
-
-            <!-- Tool Card 6: JPG to PDF -->
-            <div class="tool-card">
-                <h2>JPG to PDF</h2>
-                <p>Convert multiple JPG images into a single PDF document with customizable page layout.</p>
-                <button class="btn" onclick="redirectToTool('JPG to PDF')">Use Tool</button>
-            </div>
-
-            <!-- Tool Card 7: Split PDF -->
-            <div class="tool-card">
-                <h2>Split PDF</h2>
-                <p>Divide large PDF files into smaller documents by page ranges or individual pages.</p>
-                <button class="btn" onclick="redirectToTool('Split PDF')">Use Tool</button>
-            </div>
-
-            <!-- Tool Card 8: Compress PDF -->
-            <div class="tool-card">
-                <h2>Compress PDF</h2>
-                <p>Reduce PDF file size without losing quality, perfect for email attachments and web uploads.</p>
-                <button class="btn" onclick="redirectToTool('Compress PDF')">Use Tool</button>
-            </div>
+            
+            <!-- Tools Section -->
+            <section class="tool-section" id="tools">
+                <h3>Select a Tool</h3>
+                <div class="tool-grid">
+                    <div class="tool-card" data-tool="compress-image">
+                        <i class="fas fa-file-image"></i>
+                        <h4>Compress Image</h4>
+                        <p>Reduce image file size while keeping quality</p>
+                    </div>
+                    <div class="tool-card" data-tool="compress-pdf">
+                        <i class="fas fa-file-pdf"></i>
+                        <h4>Compress PDF</h4>
+                        <p>Reduce PDF file size without losing quality</p>
+                    </div>
+                    <div class="tool-card" data-tool="split-pdf">
+                        <i class="fas fa-cut"></i>
+                        <h4>Split PDF</h4>
+                        <p>Divide PDF into multiple files</p>
+                    </div>
+                    <div class="tool-card" data-tool="merge-pdf">
+                        <i class="fas fa-object-group"></i>
+                        <h4>Merge PDF</h4>
+                        <p>Combine multiple PDFs into one</p>
+                    </div>
+                    <div class="tool-card" data-tool="edit-pdf">
+                        <i class="fas fa-edit"></i>
+                        <h4>Edit PDF</h4>
+                        <p>Modify PDF documents online</p>
+                    </div>
+                    <div class="tool-card" data-tool="pdf-to-jpg">
+                        <i class="fas fa-exchange-alt"></i>
+                        <h4>PDF to JPG</h4>
+                        <p>Convert PDF pages to JPG images</p>
+                    </div>
+                    <div class="tool-card" data-tool="jpg-to-pdf">
+                        <i class="fas fa-exchange-alt"></i>
+                        <h4>JPG to PDF</h4>
+                        <p>Convert JPG images to PDF documents</p>
+                    </div>
+                    <div class="tool-card" data-tool="more-tools">
+                        <i class="fas fa-tools"></i>
+                        <h4>More Tools</h4>
+                        <p>Additional PDF and image utilities</p>
+                    </div>
+                </div>
+                
+                <!-- Tool Interfaces -->
+                <!-- Compress Image Tool -->
+                <div class="tool-interface" id="compress-image-interface">
+                    <div class="file-upload-area" id="compress-image-upload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop your image here or click to browse</p>
+                        <p class="small">Supports JPG, PNG, GIF, WEBP (Max 50MB)</p>
+                        <input type="file" id="compress-image-input" accept="image/*">
+                    </div>
+                    
+                    <div class="options-section">
+                        <h4>Compression Options</h4>
+                        <div class="option-group">
+                            <label for="image-quality">Quality: <span id="image-quality-value" class="range-value">70</span>%</label>
+                            <input type="range" id="image-quality" min="10" max="100" value="70" step="5">
+                        </div>
+                        <div class="option-group">
+                            <label for="image-format">Output Format:</label>
+                            <select id="image-format">
+                                <option value="original">Original Format</option>
+                                <option value="jpg">JPG</option>
+                                <option value="png">PNG</option>
+                                <option value="webp">WEBP</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="btn" id="compress-image-btn">Compress Image</button>
+                    
+                    <div class="result-section" id="compress-image-result">
+                        <h4>Compression Results</h4>
+                        <div class="result-info">
+                            <p>Original Size: <span id="original-image-size">-</span></p>
+                            <p>Compressed Size: <span id="compressed-image-size">-</span></p>
+                            <p>Reduction: <span id="image-reduction">-</span>%</p>
+                        </div>
+                        <img id="compressed-image-preview" class="result-preview" src="" alt="Compressed Image Preview">
+                        <a href="#" class="btn download-btn" id="download-compressed-image">Download Compressed Image</a>
+                    </div>
+                </div>
+                
+                <!-- Compress PDF Tool -->
+                <div class="tool-interface" id="compress-pdf-interface">
+                    <div class="file-upload-area" id="compress-pdf-upload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop your PDF here or click to browse</p>
+                        <p class="small">Max file size: 50MB</p>
+                        <input type="file" id="compress-pdf-input" accept=".pdf">
+                    </div>
+                    
+                    <div class="options-section">
+                        <h4>Compression Options</h4>
+                        <div class="option-group">
+                            <label for="pdf-compression-level">Compression Level:</label>
+                            <select id="pdf-compression-level">
+                                <option value="low">Low (Better Quality)</option>
+                                <option value="medium" selected>Medium (Balanced)</option>
+                                <option value="high">High (Smaller File)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="btn" id="compress-pdf-btn">Compress PDF</button>
+                    
+                    <div class="result-section" id="compress-pdf-result">
+                        <h4>Compression Results</h4>
+                        <div class="result-info">
+                            <p>Original Size: <span id="original-pdf-size">-</span></p>
+                            <p>Compressed Size: <span id="compressed-pdf-size">-</span></p>
+                            <p>Reduction: <span id="pdf-reduction">-</span>%</p>
+                        </div>
+                        <a href="#" class="btn download-btn" id="download-compressed-pdf">Download Compressed PDF</a>
+                    </div>
+                </div>
+                
+                <!-- Split PDF Tool -->
+                <div class="tool-interface" id="split-pdf-interface">
+                    <div class="file-upload-area" id="split-pdf-upload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop your PDF here or click to browse</p>
+                        <p class="small">Max file size: 50MB</p>
+                        <input type="file" id="split-pdf-input" accept=".pdf">
+                    </div>
+                    
+                    <div class="options-section">
+                        <h4>Split Options</h4>
+                        <div class="option-group">
+                            <label for="split-method">Split Method:</label>
+                            <select id="split-method">
+                                <option value="range">Select Page Range</option>
+                                <option value="every">Split Every X Pages</option>
+                                <option value="bookmarks">Split by Bookmarks</option>
+                            </select>
+                        </div>
+                        
+                        <div id="split-range-options">
+                            <div class="option-group">
+                                <label for="split-start-page">Start Page:</label>
+                                <input type="number" id="split-start-page" min="1" value="1">
+                            </div>
+                            <div class="option-group">
+                                <label for="split-end-page">End Page:</label>
+                                <input type="number" id="split-end-page" min="1">
+                            </div>
+                        </div>
+                        
+                        <div id="split-every-options" style="display: none;">
+                            <div class="option-group">
+                                <label for="split-every-pages">Split every <input type="number" id="split-every-pages" min="1" value="1"> pages</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn" id="split-pdf-btn">Split PDF</button>
+                    
+                    <div class="result-section" id="split-pdf-result">
+                        <h4>Split Results</h4>
+                        <div id="split-pdf-files">
+                            <!-- Generated split files will appear here -->
+                        </div>
+                        <button class="btn" id="download-all-split">Download All as ZIP</button>
+                    </div>
+                </div>
+                
+                <!-- Merge PDF Tool -->
+                <div class="tool-interface" id="merge-pdf-interface">
+                    <div class="file-upload-area" id="merge-pdf-upload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop your PDFs here or click to browse</p>
+                        <p class="small">Max 20 files, 50MB each</p>
+                        <input type="file" id="merge-pdf-input" accept=".pdf" multiple>
+                    </div>
+                    
+                    <div id="merge-pdf-list">
+                        <!-- Uploaded PDFs will appear here -->
+                    </div>
+                    
+                    <div class="options-section">
+                        <h4>Merge Options</h4>
+                        <div class="option-group">
+                            <label for="merge-order">Merge Order:</label>
+                            <select id="merge-order">
+                                <option value="upload">Upload Order</option>
+                                <option value="alphabetical">Alphabetical</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="btn" id="merge-pdf-btn">Merge PDFs</button>
+                    
+                    <div class="result-section" id="merge-pdf-result">
+                        <h4>Merged PDF</h4>
+                        <div class="result-info">
+                            <p>File Size: <span id="merged-pdf-size">-</span></p>
+                            <p>Total Pages: <span id="merged-pdf-pages">-</span></p>
+                        </div>
+                        <a href="#" class="btn download-btn" id="download-merged-pdf">Download Merged PDF</a>
+                    </div>
+                </div>
+                
+                <!-- Edit PDF Tool -->
+                <div class="tool-interface" id="edit-pdf-interface">
+                    <div class="file-upload-area" id="edit-pdf-upload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop your PDF here or click to browse</p>
+                        <p class="small">Max file size: 50MB</p>
+                        <input type="file" id="edit-pdf-input" accept=".pdf">
+                    </div>
+                    
+                    <div class="options-section">
+                        <h4>Edit Options</h4>
+                        <div class="option-group">
+                            <label>Actions:</label>
+                            <div>
+                                <button class="btn-secondary" id="rotate-pdf">Rotate</button>
+                                <button class="btn-secondary" id="delete-pages">Delete Pages</button>
+                                <button class="btn-secondary" id="reorder-pages">Reorder Pages</button>
+                                <button class="btn-secondary" id="add-watermark">Add Watermark</button>
+                            </div>
+                        </div>
+                        
+                        <div id="edit-options-container" style="display: none;">
+                            <!-- Dynamic edit options will appear here -->
+                        </div>
+                    </div>
+                    
+                    <button class="btn" id="save-pdf-btn">Save Changes</button>
+                    
+                    <div class="result-section" id="edit-pdf-result">
+                        <h4>Edited PDF</h4>
+                        <div class="result-info">
+                            <p>File Size: <span id="edited-pdf-size">-</span></p>
+                        </div>
+                        <a href="#" class="btn download-btn" id="download-edited-pdf">Download Edited PDF</a>
+                    </div>
+                </div>
+                
+                <!-- PDF to JPG Tool -->
+                <div class="tool-interface" id="pdf-to-jpg-interface">
+                    <div class="file-upload-area" id="pdf-to-jpg-upload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop your PDF here or click to browse</p>
+                        <p class="small">Max file size: 50MB</p>
+                        <input type="file" id="pdf-to-jpg-input" accept=".pdf">
+                    </div>
+                    
+                    <div class="options-section">
+                        <h4>Conversion Options</h4>
+                        <div class="option-group">
+                            <label for="jpg-quality">JPG Quality: <span id="jpg-quality-value" class="range-value">80</span>%</label>
+                            <input type="range" id="jpg-quality" min="10" max="100" value="80" step="5">
+                        </div>
+                        <div class="option-group">
+                            <label for="jpg-pages">Pages to Convert:</label>
+                            <select id="jpg-pages">
+                                <option value="all">All Pages</option>
+                                <option value="range">Page Range</option>
+                                <option value="selected">Selected Pages</option>
+                            </select>
+                        </div>
+                        <div id="jpg-range-options" style="display: none;">
+                            <div class="option-group">
+                                <label for="jpg-start-page">Start Page:</label>
+                                <input type="number" id="jpg-start-page" min="1" value="1">
+                            </div>
+                            <div class="option-group">
+                                <label for="jpg-end-page">End Page:</label>
+                                <input type="number" id="jpg-end-page" min="1">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn" id="pdf-to-jpg-btn">Convert to JPG</button>
+                    
+                    <div class="result-section" id="pdf-to-jpg-result">
+                        <h4>Converted Images</h4>
+                        <div id="jpg-images-container">
+                            <!-- Converted JPGs will appear here -->
+                        </div>
+                        <button class="btn" id="download-all-jpgs">Download All as ZIP</button>
+                    </div>
+                </div>
+                
+                <!-- JPG to PDF Tool -->
+                <div class="tool-interface" id="jpg-to-pdf-interface">
+                    <div class="file-upload-area" id="jpg-to-pdf-upload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop your JPG images here or click to browse</p>
+                        <p class="small">Max 20 files, 50MB each</p>
+                        <input type="file" id="jpg-to-pdf-input" accept="image/*" multiple>
+                    </div>
+                    
+                    <div id="jpg-to-pdf-list">
+                        <!-- Uploaded JPGs will appear here -->
+                    </div>
+                    
+                    <div class="options-section">
+                        <h4>PDF Options</h4>
+                        <div class="option-group">
+                            <label for="pdf-page-size">Page Size:</label>
+                            <select id="pdf-page-size">
+                                <option value="a4">A4</option>
+                                <option value="letter">Letter</option>
+                                <option value="legal">Legal</option>
+                                <option value="match">Match Image Size</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label for="pdf-orientation">Orientation:</label>
+                            <select id="pdf-orientation">
+                                <option value="portrait">Portrait</option>
+                                <option value="landscape">Landscape</option>
+                                <option value="auto">Auto (Match Images)</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label for="pdf-margin">Margin (mm):</label>
+                            <input type="number" id="pdf-margin" min="0" max="50" value="10">
+                        </div>
+                    </div>
+                    
+                    <button class="btn" id="jpg-to-pdf-btn">Convert to PDF</button>
+                    
+                    <div class="result-section" id="jpg-to-pdf-result">
+                        <h4>Converted PDF</h4>
+                        <div class="result-info">
+                            <p>File Size: <span id="converted-pdf-size">-</span></p>
+                            <p>Total Pages: <span id="converted-pdf-pages">-</span></p>
+                        </div>
+                        <a href="#" class="btn download-btn" id="download-converted-pdf">Download PDF</a>
+                    </div>
+                </div>
+                
+                <!-- Middle Ad Banner -->
+                <div class="ad-container">
+                    <!-- Replace with your Google AdSense code -->
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
+                    crossorigin="anonymous"></script>
+                    <!-- Your Ad Unit -->
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                        data-ad-slot="YOUR_AD_SLOT_ID"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+                
+                <!-- Features Section -->
+                <section class="features" id="features">
+                    <div class="feature-card">
+                        <i class="fas fa-lock"></i>
+                        <h4>Secure Processing</h4>
+                        <p>All files are processed in your browser. Your documents never leave your computer, ensuring complete privacy.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-bolt"></i>
+                        <h4>Fast Processing</h4>
+                        <p>Our tools use advanced algorithms to process your files quickly without compromising quality.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-desktop"></i>
+                        <h4>No Installation</h4>
+                        <p>All tools work directly in your web browser. No need to download or install any software.</p>
+                    </div>
+                </section>
+                
+                <!-- About Section -->
+                <section class="tool-section" id="about">
+                    <h3>About Our Tools</h3>
+                    <p>PDF & Image Tools is a free online platform offering a suite of utilities for working with PDF documents and image files. Our mission is to provide easy-to-use, powerful tools that help you manage your digital documents without the need for expensive software.</p>
+                    <p>All processing happens directly in your browser, ensuring your files remain private and secure. We don't store your documents on our servers - once you close the browser tab, your files are gone forever.</p>
+                </section>
+                
+                <!-- Contact Section -->
+                <section class="tool-section" id="contact">
+                    <h3>Contact Us</h3>
+                    <p>Have questions or suggestions? We'd love to hear from you!</p>
+                    <form id="contact-form" style="margin-top: 20px;">
+                        <div class="option-group">
+                            <label for="contact-name">Name:</label>
+                            <input type="text" id="contact-name" required>
+                        </div>
+                        <div class="option-group">
+                            <label for="contact-email">Email:</label>
+                            <input type="email" id="contact-email" required>
+                        </div>
+                        <div class="option-group">
+                            <label for="contact-message">Message:</label>
+                            <textarea id="contact-message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </section>
+            </section>
         </div>
     </main>
-
+    
     <!-- Footer -->
     <footer>
-        <p>&copy; 2023 My PDF Convert. All rights reserved.</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Tools</h4>
+                    <ul>
+                        <li><a href="#" data-tool="compress-image">Compress Image</a></li>
+                        <li><a href="#" data-tool="compress-pdf">Compress PDF</a></li>
+                        <li><a href="#" data-tool="split-pdf">Split PDF</a></li>
+                        <li><a href="#" data-tool="merge-pdf">Merge PDF</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 PDF & Image Tools. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
-
-    <!-- JavaScript -->
+    
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.16.0/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/compressorjs/1.1.1/compressor.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    
     <script>
-        // Function to handle tool redirection
-        function redirectToTool(toolName) {
-            // Show loading state on the clicked button
-            const buttons = document.querySelectorAll('.btn');
-            buttons.forEach(btn => {
-                if (btn.textContent.includes('Redirecting')) {
-                    btn.textContent = btn.textContent.replace('Redirecting...', 'Use Tool');
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+        
+        // Tool Selection
+        const toolCards = document.querySelectorAll('.tool-card');
+        const toolInterfaces = document.querySelectorAll('.tool-interface');
+        
+        toolCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const toolName = this.getAttribute('data-tool');
+                
+                // Hide all tool interfaces
+                toolInterfaces.forEach(interface => {
+                    interface.classList.remove('active-tool');
+                });
+                
+                // Show selected tool interface
+                document.getElementById(`${toolName}-interface`).classList.add('active-tool');
+                
+                // Scroll to tool interface
+                document.getElementById(`${toolName}-interface`).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Navigation links to tools
+        document.querySelectorAll('a[data-tool]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const toolName = this.getAttribute('data-tool');
+                
+                // Hide all tool interfaces
+                toolInterfaces.forEach(interface => {
+                    interface.classList.remove('active-tool');
+                });
+                
+                // Show selected tool interface
+                document.getElementById(`${toolName}-interface`).classList.add('active-tool');
+                
+                // Scroll to tool interface
+                document.getElementById(`${toolName}-interface`).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Image Quality Range Value Display
+        const imageQualityRange = document.getElementById('image-quality');
+        const imageQualityValue = document.getElementById('image-quality-value');
+        
+        if (imageQualityRange && imageQualityValue) {
+            imageQualityRange.addEventListener('input', function() {
+                imageQualityValue.textContent = this.value;
+            });
+        }
+        
+        // JPG Quality Range Value Display
+        const jpgQualityRange = document.getElementById('jpg-quality');
+        const jpgQualityValue = document.getElementById('jpg-quality-value');
+        
+        if (jpgQualityRange && jpgQualityValue) {
+            jpgQualityRange.addEventListener('input', function() {
+                jpgQualityValue.textContent = this.value;
+            });
+        }
+        
+        // Split PDF Method Toggle
+        const splitMethod = document.getElementById('split-method');
+        const splitRangeOptions = document.getElementById('split-range-options');
+        const splitEveryOptions = document.getElementById('split-every-options');
+        
+        if (splitMethod && splitRangeOptions && splitEveryOptions) {
+            splitMethod.addEventListener('change', function() {
+                if (this.value === 'range') {
+                    splitRangeOptions.style.display = 'block';
+                    splitEveryOptions.style.display = 'none';
+                } else if (this.value === 'every') {
+                    splitRangeOptions.style.display = 'none';
+                    splitEveryOptions.style.display = 'block';
+                } else {
+                    splitRangeOptions.style.display = 'none';
+                    splitEveryOptions.style.display = 'none';
                 }
             });
-            
-            event.target.textContent = 'Redirecting...';
-            event.target.disabled = true;
-            
-            // Simulate loading delay
-            setTimeout(() => {
-                alert(`Redirecting to ${toolName} tool...`);
-                event.target.textContent = 'Use Tool';
-                event.target.disabled = false;
-                
-                // In a real implementation, this would navigate to the tool page
-                // window.location.href = `${toolName.toLowerCase().replace(' ', '-')}.html`;
-            }, 800);
         }
-
-        // Enhanced hover effects for better mobile touch support
-        document.addEventListener('DOMContentLoaded', function() {
-            const toolCards = document.querySelectorAll('.tool-card');
+        
+        // PDF to JPG Pages Toggle
+        const jpgPages = document.getElementById('jpg-pages');
+        const jpgRangeOptions = document.getElementById('jpg-range-options');
+        
+        if (jpgPages && jpgRangeOptions) {
+            jpgPages.addEventListener('change', function() {
+                if (this.value === 'range') {
+                    jpgRangeOptions.style.display = 'block';
+                } else {
+                    jpgRangeOptions.style.display = 'none';
+                }
+            });
+        }
+        
+        // File Upload Handling
+        const uploadAreas = document.querySelectorAll('.file-upload-area');
+        
+        uploadAreas.forEach(area => {
+            // Click to browse files
+            area.addEventListener('click', function() {
+                const input = this.querySelector('input[type="file"]');
+                if (input) input.click();
+            });
             
-            // Add touch support for mobile devices
-            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
+            // Drag and drop
+            area.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#4285f4';
+            });
             
-            if (isTouchDevice) {
-                toolCards.forEach(card => {
-                    card.addEventListener('touchstart', function() {
-                        this.classList.add('hover-effect');
-                    }, {passive: true});
-                    
-                    card.addEventListener('touchend', function() {
-                        setTimeout(() => {
-                            this.classList.remove('hover-effect');
-                        }, 200);
-                    }, {passive: true});
-                });
-            }
+            area.addEventListener('dragleave', function() {
+                this.style.borderColor = '#5f6368';
+            });
             
-            // Add animation class after page loads
-            setTimeout(() => {
-                document.body.classList.add('loaded');
-            }, 100);
+            area.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#5f6368';
+                
+                const input = this.querySelector('input[type="file"]');
+                if (input) {
+                    input.files = e.dataTransfer.files;
+                    // Trigger change event
+                    const event = new Event('change');
+                    input.dispatchEvent(event);
+                }
+            });
         });
+        
+        // Note: In a production environment, you would implement the actual PDF and image processing
+        // functionality using libraries like pdf-lib, compressorjs, etc. The code below provides
+        // placeholder implementations that would be replaced with real functionality.
+        
+        // Placeholder for image compression
+        if (document.getElementById('compress-image-btn')) {
+            document.getElementById('compress-image-btn').addEventListener('click', function() {
+                const fileInput = document.getElementById('compress-image-input');
+                if (fileInput.files.length === 0) {
+                    alert('Please select an image file first');
+                    return;
+                }
+                
+                const file = fileInput.files[0];
+                const quality = document.getElementById('image-quality').value / 100;
+                const format = document.getElementById('image-format').value;
+                
+                // In a real implementation, you would use a library like compressorjs here
+                // This is just a placeholder to demonstrate the UI flow
+                
+                // Display "processing" state
+                this.textContent = 'Compressing...';
+                this.disabled = true;
+                
+                // Simulate processing delay
+                setTimeout(() => {
+                    // Update result section
+                    document.getElementById('original-image-size').textContent = formatFileSize(file.size);
+                    document.getElementById('compressed-image-size').textContent = formatFileSize(file.size * quality);
+                    document.getElementById('image-reduction').textContent = Math.round((1 - quality) * 100);
+                    
+                    // Create object URL for preview (in real implementation, this would be the compressed image)
+                    const previewUrl = URL.createObjectURL(file);
+                    document.getElementById('compressed-image-preview').src = previewUrl;
+                    
+                    // Set up download link (in real implementation, this would be the compressed image)
+                    document.getElementById('download-compressed-image').href = previewUrl;
+                    document.getElementById('download-compressed-image').download = `compressed_${file.name}`;
+                    
+                    // Show result section
+                    document.getElementById('compress-image-result').style.display = 'block';
+                    
+                    // Reset button
+                    this.textContent = 'Compress Image';
+                    this.disabled = false;
+                }, 1500);
+            });
+        }
+        
+        // Placeholder for PDF compression
+        if (document.getElementById('compress-pdf-btn')) {
+            document.getElementById('compress-pdf-btn').addEventListener('click', function() {
+                const fileInput = document.getElementById('compress-pdf-input');
+                if (fileInput.files.length === 0) {
+                    alert('Please select a PDF file first');
+                    return;
+                }
+                
+                const file = fileInput.files[0];
+                const compressionLevel = document.getElementById('pdf-compression-level').value;
+                
+                // Display "processing" state
+                this.textContent = 'Compressing...';
+                this.disabled = true;
+                
+                // Simulate processing delay
+                setTimeout(() => {
+                    // Calculate simulated compressed size based on level
+                    let compressedSize;
+                    if (compressionLevel === 'low') compressedSize = file.size * 0.8;
+                    else if (compressionLevel === 'medium') compressedSize = file.size * 0.6;
+                    else compressedSize = file.size * 0.4;
+                    
+                    // Update result section
+                    document.getElementById('original-pdf-size').textContent = formatFileSize(file.size);
+                    document.getElementById('compressed-pdf-size').textContent = formatFileSize(compressedSize);
+                    document.getElementById('pdf-reduction').textContent = Math.round((1 - (compressedSize / file.size)) * 100);
+                    
+                    // Set up download link (in real implementation, this would be the compressed PDF)
+                    const downloadLink = document.getElementById('download-compressed-pdf');
+                    downloadLink.href = URL.createObjectURL(file);
+                    downloadLink.download = `compressed_${file.name}`;
+                    
+                    // Show result section
+                    document.getElementById('compress-pdf-result').style.display = 'block';
+                    
+                    // Reset button
+                    this.textContent = 'Compress PDF';
+                    this.disabled = false;
+                }, 2000);
+            });
+        }
+        
+        // Helper function to format file sizes
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        // Additional tool implementations would go here...
+        // In a production environment, you would implement:
+        // - PDF splitting using pdf-lib
+        // - PDF merging using pdf-lib
+        // - PDF editing (rotation, page deletion, etc.)
+        // - PDF to JPG conversion
+        // - JPG to PDF conversion
+        // - More robust error handling
+        // - Progress indicators for large files
+        // - File validation
+        // - etc.
+        
+        // Contact form handling
+        if (document.getElementById('contact-form')) {
+            document.getElementById('contact-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('contact-name').value;
+                const email = document.getElementById('contact-email').value;
+                const message = document.getElementById('contact-message').value;
+                
+                // In a real implementation, you would send this data to your server
+                console.log('Contact form submitted:', { name, email, message });
+                
+                alert('Thank you for your message! We will get back to you soon.');
+                this.reset();
+            });
+        }
     </script>
 </body>
 </html>
