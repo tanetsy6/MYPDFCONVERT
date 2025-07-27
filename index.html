@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My PDF Convert - Online PDF Tools</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --dark-navy: #1E1E2F;
+            --light-gray: #EAEAEA;
+            --deep-blue: #2B2D42;
+            --gold: #FFD700;
+            --deep-gold: #E6C200;
+            --tool-card-bg: #3A3D5B;
+            --box-shadow: 0 4px 8px rgba(255, 215, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-navy);
+            color: var(--light-gray);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--deep-blue);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            z-index: 10;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        main {
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        /* Tool Card */
+        .tool-card {
+            background-color: var(--tool-card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            background-color: var(--gold);
+            color: var(--dark-navy);
+            box-shadow: 0 8px 16px rgba(255, 215, 0, 0.3);
+        }
+
+        .tool-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .tool-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+            position: relative;
+            z-index: 1;
+        }
+
+        .tool-card:hover h2 {
+            color: var(--dark-navy);
+        }
+
+        .tool-card p {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            background-color: var(--gold);
+            color: var(--dark-navy);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1rem;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--deep-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover::after {
+            transform: translateX(100%);
+        }
+
+        .tool-card:hover .btn {
+            background-color: var(--dark-navy);
+            color: var(--gold);
+        }
+
+        .tool-card:hover .btn:hover {
+            background-color: #111122;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--deep-blue);
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tool-card {
+                padding: 1.2rem;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            header p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 0.7rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>My PDF Convert</h1>
+        <p>Premium PDF and image conversion tools for all your document needs</p>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Tools Grid -->
+        <div class="tools-grid">
+            <!-- Tool Card 1: Merge PDF -->
+            <div class="tool-card">
+                <h2>Merge PDF</h2>
+                <p>Combine multiple PDF files into a single document while preserving quality and formatting.</p>
+                <button class="btn" onclick="redirectToTool('Merge PDF')">Use Tool</button>
+            </div>
+
+            <!-- Tool Card 2: Image Compressor -->
+            <div class="tool-card">
+                <h2>Image Compressor</h2>
+                <p>Reduce image file sizes significantly while maintaining visual quality for web and mobile.</p>
+                <button class="btn" onclick="redirectToTool('Image Compressor')">Use Tool</button>
+            </div>
+
+            <!-- Tool Card 3: Image Crop -->
+            <div class="tool-card">
+                <h2>Image Crop</h2>
+                <p>Precisely crop images to any size or aspect ratio with pixel-perfect accuracy.</p>
+                <button class="btn" onclick="redirectToTool('Image Crop')">Use Tool</button>
+            </div>
+
+            <!-- Tool Card 4: PDF to JPG -->
+            <div class="tool-card">
+                <h2>PDF to JPG</h2>
+                <p>Convert PDF pages to high-quality JPG images with customizable resolution settings.</p>
+                <button class="btn" onclick="redirectToTool('PDF to JPG')">Use Tool</button>
+            </div>
+
+            <!-- Tool Card 5: Edit PDF -->
+            <div class="tool-card">
+                <h2>Edit PDF</h2>
+                <p>Modify PDF documents by adding text, images, annotations, and rearranging pages.</p>
+                <button class="btn" onclick="redirectToTool('Edit PDF')">Use Tool</button>
+            </div>
+
+            <!-- Tool Card 6: JPG to PDF -->
+            <div class="tool-card">
+                <h2>JPG to PDF</h2>
+                <p>Convert multiple JPG images into a single PDF document with customizable page layout.</p>
+                <button class="btn" onclick="redirectToTool('JPG to PDF')">Use Tool</button>
+            </div>
+
+            <!-- Tool Card 7: Split PDF -->
+            <div class="tool-card">
+                <h2>Split PDF</h2>
+                <p>Divide large PDF files into smaller documents by page ranges or individual pages.</p>
+                <button class="btn" onclick="redirectToTool('Split PDF')">Use Tool</button>
+            </div>
+
+            <!-- Tool Card 8: Compress PDF -->
+            <div class="tool-card">
+                <h2>Compress PDF</h2>
+                <p>Reduce PDF file size without losing quality, perfect for email attachments and web uploads.</p>
+                <button class="btn" onclick="redirectToTool('Compress PDF')">Use Tool</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 My PDF Convert. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Function to handle tool redirection
+        function redirectToTool(toolName) {
+            // Show loading state on the clicked button
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(btn => {
+                if (btn.textContent.includes('Redirecting')) {
+                    btn.textContent = btn.textContent.replace('Redirecting...', 'Use Tool');
+                }
+            });
+            
+            event.target.textContent = 'Redirecting...';
+            event.target.disabled = true;
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                alert(`Redirecting to ${toolName} tool...`);
+                event.target.textContent = 'Use Tool';
+                event.target.disabled = false;
+                
+                // In a real implementation, this would navigate to the tool page
+                // window.location.href = `${toolName.toLowerCase().replace(' ', '-')}.html`;
+            }, 800);
+        }
+
+        // Enhanced hover effects for better mobile touch support
+        document.addEventListener('DOMContentLoaded', function() {
+            const toolCards = document.querySelectorAll('.tool-card');
+            
+            // Add touch support for mobile devices
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
+            
+            if (isTouchDevice) {
+                toolCards.forEach(card => {
+                    card.addEventListener('touchstart', function() {
+                        this.classList.add('hover-effect');
+                    }, {passive: true});
+                    
+                    card.addEventListener('touchend', function() {
+                        setTimeout(() => {
+                            this.classList.remove('hover-effect');
+                        }, 200);
+                    }, {passive: true});
+                });
+            }
+            
+            // Add animation class after page loads
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 100);
+        });
+    </script>
+</body>
+</html>
